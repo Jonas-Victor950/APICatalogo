@@ -23,6 +23,16 @@ namespace APICatalogo.Controllers
             }
             return produtos;
         }
+        [HttpGet("{id:int}")]
+        public ActionResult<Produto> GetById(int id)
+        {
+            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
+            if (produto is null)
+            {
+                return NotFound("Produto não encontrado");
+            }
+            return produto;
+        }
     }
 }
 
