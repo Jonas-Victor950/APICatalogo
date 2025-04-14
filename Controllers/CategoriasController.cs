@@ -24,12 +24,21 @@ namespace APICatalogo.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Categoria>> Get()
         {
-            var categorias = _context.Categorias.ToList();
-            if (categorias is null)
+            try
             {
-                return NotFound("Categorias não encontrados...");
+                throw new DataMisalignedException();
+                // var categorias = _context.Categorias.AsNoTracking().ToList();
+                // if (categorias is null)
+                // {
+                //     return NotFound("Categorias não encontrados...");
+                // }
+                // return categorias;
             }
-            return categorias;
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um problema ao tratar a sua solicitação");
+            }
+
         }
         [HttpGet("{id:int}", Name = "ObterCategoria")]
         public ActionResult<Categoria> GetById(int id)
