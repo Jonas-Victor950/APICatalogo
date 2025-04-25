@@ -1,4 +1,5 @@
 using APICatalogo.Context;
+using APICatalogo.Filters;
 using APICatalogo.Models;
 using APICatalogo.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -46,21 +47,17 @@ public class CategoriasController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Categoria>> Get()
+    [ServiceFilter(typeof(ApiLoggingFilter))]
+    public async Task<ActionResult<IEnumerable<Categoria>>> Get()
     {
         try
         {
-            throw new DataMisalignedException();
-            // var categorias = _context.Categorias.AsNoTracking().ToList();
-            // if (categorias is null)
-            // {
-            //     return NotFound("Categorias não encontrados...");
-            // }
-            // return categorias;
+            return await _context.Categorias.AsNoTracking().ToListAsync();
         }
         catch (Exception)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um problema ao tratar a sua solicitação");
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                "Ocorreu um problema ao tratar a sua solicitação.");
         }
 
     }
