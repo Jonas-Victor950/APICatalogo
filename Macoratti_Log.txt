@@ -10,3 +10,11 @@ FROM `Categorias` AS `c`
 LEFT JOIN `Produtos` AS `p` ON `c`.`CategoriaId` = `p`.`CategoriaId`
 ORDER BY `c`.`CategoriaId`
 Information: 0 - Application is shutting down...
+Information: 14 - Now listening on: http://localhost:5194
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\jonas.victor\Documents\Pojetos\APICatalogo\APICatalogo
+Warning: 3 - Failed to determine the https port for redirect.
+Error: 0 - Ocorreu uma exceção não tratada: Status Code 500
+Error: 0 - Ocorreu uma exceção não tratada: Status Code 500
+Information: 0 - Application is shutting down...
