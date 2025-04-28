@@ -13,10 +13,12 @@ public class CategoriasController : ControllerBase
 {
     private readonly AppDbContext _context;
     private readonly IConfiguration _configuration;
-    public CategoriasController(AppDbContext context, IMeuServico meuServico, IConfiguration configuration)
+    private readonly ILogger _logger;
+    public CategoriasController(AppDbContext context, IMeuServico meuServico, IConfiguration configuration, ILogger<CategoriasController> logger)
     {
         _context = context;
         _configuration = configuration;
+        _logger = logger;
     }
 
     [HttpGet("LerArquivoConfiguracao")]
@@ -43,6 +45,7 @@ public class CategoriasController : ControllerBase
     [HttpGet("produtos")]
     public ActionResult<IEnumerable<Categoria>> GetCategoriasProdutos()
     {
+        _logger.LogInformation("###################Só testando");
         return _context.Categorias.Include(p => p.Produtos).ToList();
     }
 
@@ -52,6 +55,7 @@ public class CategoriasController : ControllerBase
     {
         try
         {
+            _logger.LogInformation("###################Só testando");
             return await _context.Categorias.AsNoTracking().ToListAsync();
         }
         catch (Exception)
@@ -65,11 +69,12 @@ public class CategoriasController : ControllerBase
     public ActionResult<Categoria> GetById(int id)
     {
         // throw new Exception("Exceção ao retornar a categoria pelo id");
-        string[] teste = null;
-        if (teste.Length > 0)
-        {
+        // string[] teste = null;
+        // if (teste.Length > 0)
+        // {
 
-        }
+        // }
+        _logger.LogInformation("###################Só testando");
         var categoria = _context.Categorias.FirstOrDefault(p => p.CategoriaId == id);
         if (categoria is null)
         {
