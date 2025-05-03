@@ -87,3 +87,12 @@ Information: 20101 - Executed DbCommand (39ms) [Parameters=[], CommandType='Text
 SELECT `p`.`ProdutoId`, `p`.`CategoriaId`, `p`.`DataCadastro`, `p`.`Descricao`, `p`.`Estoque`, `p`.`ImageUrl`, `p`.`Nome`, `p`.`Preco`
 FROM `Produtos` AS `p`
 Information: 0 - Application is shutting down...
+Information: 20101 - Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='catalogo_db' AND TABLE_NAME='__EFMigrationsHistory';
+Information: 20101 - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='catalogo_db' AND TABLE_NAME='__EFMigrationsHistory';
+Information: 20101 - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+Information: 20405 - No migrations were applied. The database is already up to date.
