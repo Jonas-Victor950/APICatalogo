@@ -1,9 +1,7 @@
 using APICatalogo.DTOs;
 using APICatalogo.DTOs.Mappings;
-using APICatalogo.Models;
 using APICatalogo.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace APICatalogo.Controllers;
 
@@ -14,8 +12,10 @@ public class CategoriasController : ControllerBase
     private readonly IUnitOfWork _uof;
     private readonly ILogger<CategoriasController> _logger;
 
-    public CategoriasController(ILogger<CategoriasController> logger, IUnitOfWork uof)
+    public CategoriasController(IUnitOfWork uof,
+        ILogger<CategoriasController> logger)
     {
+
         _logger = logger;
         _uof = uof;
     }
@@ -24,10 +24,12 @@ public class CategoriasController : ControllerBase
     public ActionResult<IEnumerable<CategoriaDTO>> Get()
     {
         var categorias = _uof.CategoriaRepository.GetAll();
+
         if (categorias is null)
             return NotFound("Não existem categorias...");
 
         var categoriasDto = categorias.ToCategoriaDTOList();
+
         return Ok(categoriasDto);
     }
 
@@ -41,7 +43,9 @@ public class CategoriasController : ControllerBase
             _logger.LogWarning($"Categoria com id= {id} não encontrada...");
             return NotFound($"Categoria com id= {id} não encontrada...");
         }
+
         var categoriaDto = categoria.ToCategoriaDTO();
+
         return Ok(categoriaDto);
     }
 
@@ -61,7 +65,9 @@ public class CategoriasController : ControllerBase
 
         var novaCategoriaDto = categoriaCriada.ToCategoriaDTO();
 
-        return new CreatedAtRouteResult("ObterCategoria", new { id = novaCategoriaDto.CategoriaId }, novaCategoriaDto);
+        return new CreatedAtRouteResult("ObterCategoria",
+            new { id = novaCategoriaDto.CategoriaId },
+            novaCategoriaDto);
     }
 
     [HttpPut("{id:int}")]
@@ -72,12 +78,14 @@ public class CategoriasController : ControllerBase
             _logger.LogWarning($"Dados inválidos...");
             return BadRequest("Dados inválidos");
         }
+
         var categoria = categoriaDto.ToCategoria();
 
         var categoriaAtualizada = _uof.CategoriaRepository.Update(categoria);
         _uof.Commit();
 
         var categoriaAtualizadaDto = categoriaAtualizada.ToCategoriaDTO();
+
         return Ok(categoriaAtualizadaDto);
     }
 
@@ -96,7 +104,7 @@ public class CategoriasController : ControllerBase
         _uof.Commit();
 
         var categoriaExcluidaDto = categoriaExcluida.ToCategoriaDTO();
-        return Ok(categoriaExcluidaDto);
 
+        return Ok(categoriaExcluidaDto);
     }
 }
