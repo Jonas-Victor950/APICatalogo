@@ -895,3 +895,19 @@ CREATE UNIQUE INDEX `UserNameIndex` ON `AspNetUsers` (`NormalizedUserName`);
 Information: 20101 - Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
 VALUES ('20250512113109_CriaTabelasIdentity', '8.0.13');
+Information: 20101 - Executed DbCommand (89ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='catalogo_db' AND TABLE_NAME='__EFMigrationsHistory';
+Information: 20101 - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='catalogo_db' AND TABLE_NAME='__EFMigrationsHistory';
+Information: 20101 - Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+Information: 20402 - Applying migration '20250512131345_AjusteApplicationUser'.
+Information: 20101 - Executed DbCommand (473ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `AspNetUsers` ADD `RefreshToken` longtext CHARACTER SET utf8mb4 NULL;
+Information: 20101 - Executed DbCommand (254ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `AspNetUsers` ADD `RefreshTokenExpiryTime` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00';
+Information: 20101 - Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20250512131345_AjusteApplicationUser', '8.0.13');
