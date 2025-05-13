@@ -29,6 +29,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Policy = "SuperAdminOnly")]
     [Route("CreateRole")]
     public async Task<IActionResult> CreateRole(string roleName)
     {
@@ -66,6 +67,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Policy = "SuperAdminOnly")]
     [Route("AddUserToRole")]
     public async Task<IActionResult> AddUserToRole(string email, string roleName)
     {
@@ -144,6 +146,7 @@ public class AuthController : ControllerBase
             });
         }
         return Unauthorized();
+        //return Forbid(); Esse aqui é pra status 403
     }
 
     [HttpPost]
@@ -226,7 +229,7 @@ public class AuthController : ControllerBase
         });
     }
 
-    [Authorize]
+    [Authorize(Policy = "ExclusiveOnly")]
     [HttpPost]
     [Route("revoke/{username}")]
     public async Task<IActionResult> Revoke(string username)

@@ -90,7 +90,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
     options.AddPolicy("SuperAdminOnly", policy => policy.RequireRole("Admin").RequireClaim("id", "Jonas"));
     options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
-    options.AddPolicy("ExclusivePolicyOnly", policy =>
+    options.AddPolicy("ExclusiveOnly", policy =>
     {
         policy.RequireAssertion(context => context.User.HasClaim(claim => claim.Type == "id" && claim.Value == "Jonas") || context.User.IsInRole("SuperAdmin"));
     });
