@@ -28,10 +28,13 @@ var OrigensComAcessoPermitido = "_origensComAcessoPermitido";
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: OrigensComAcessoPermitido,
+    options.AddPolicy(OrigensComAcessoPermitido,
                     policy =>
                     {
-                        policy.WithOrigins("https://apirequest.io");
+                        policy.WithOrigins("https://apirequest.io")
+                            .WithMethods("GET", "POST")
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                     });
 }
 );
