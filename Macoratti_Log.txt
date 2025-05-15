@@ -1365,3 +1365,10 @@ Information: 0 - Hosting environment: Development
 Information: 0 - Content root path: C:\Users\jonas.victor\Documents\Pojetos\APICatalogo\APICatalogo
 Warning: 3 - Failed to determine the https port for redirect.
 Information: 0 - Application is shutting down...
+Warning: 16 - The WebRootPath was not found: C:\Users\jonas.victor\Documents\Pojetos\APICatalogo\APICatalogo\wwwroot. Static files may be unavailable.
+Information: 14 - Now listening on: http://localhost:5194
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\jonas.victor\Documents\Pojetos\APICatalogo\APICatalogo
+Warning: 3 - Failed to determine the https port for redirect.
+Information: 0 - Application is shutting down...
