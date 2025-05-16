@@ -5,6 +5,7 @@ namespace APICatalogo.Controllers;
 
 [ApiController]
 [Route("api/teste")]
+[ApiExplorerSettings(IgnoreApi = true)]
 [ApiVersion(3)]
 [ApiVersion(4)]
 public class TesteV3Controller : ControllerBase

@@ -11,7 +11,7 @@ namespace APICatalogo.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[ApiExplorerSettings(IgnoreApi = true)]
+// [ApiExplorerSettings(IgnoreApi = true)]
 public class AuthController : ControllerBase
 {
     private readonly ITokenService _tokenService;
@@ -101,6 +101,12 @@ public class AuthController : ControllerBase
         return BadRequest(new { error = "Unable to find user" });
     }
 
+    /// <summary>
+    /// Verifica as credenciais de um usuário
+    /// </summary>
+    /// <param name="model">Um objeto do tipo UsuarioDTO</param>
+    /// <returns>Status 200 e o token para o cliente</returns>
+    /// <remarks>Retorna o Status 200 e o token </remarks>
     [HttpPost]
     [Route("login")]
     public async Task<IActionResult> Login([FromBody] LoginModel model)
@@ -150,6 +156,12 @@ public class AuthController : ControllerBase
         //return Forbid(); Esse aqui é pra status 403
     }
 
+    /// <summary>
+    /// Registra um novo usuário
+    /// </summary>
+    /// <param name="model">Um objeto UsuarioDTO</param>
+    /// <returns>Status 200</returns>
+    /// <remarks>Retorna o Status 200</remarks>
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)

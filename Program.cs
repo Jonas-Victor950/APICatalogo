@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 using APICatalogo.Context;
@@ -41,7 +42,27 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "apicatalogo", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "apicatalogo",
+        Version = "v1",
+        Description = "Catálogo de Produtos e Categorias",
+        TermsOfService = new Uri("https://jonas.net/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "jonas",
+            Email = "jonas@gmail.com",
+            Url = new Uri("https://www.jonas.net")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Usar sobre LICX",
+            Url = new Uri("https://jonas.net/license")
+        }
+    });
+
+    var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
@@ -153,7 +174,6 @@ if (app.Environment.IsDevelopment())
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Catálogo v1");
     });
-    app.ConfigureExceptionHandler();
 }
 
 app.UseHttpsRedirection();
