@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using X.PagedList;
+using Microsoft.AspNetCore.Http;
 
 namespace APICatalogo.Controllers;
 
@@ -35,6 +36,9 @@ public class CategoriasController : ControllerBase
     /// </summary>
     /// <returns>Uma lista de objetos Categoria</returns>
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
     // [Authorize]
     public async Task<ActionResult<IEnumerable<CategoriaDTO>>> Get()
     {
@@ -126,6 +130,9 @@ public class CategoriasController : ControllerBase
     /// <returns>O objeto Categoria incluido</returns>
     /// <returns>Retorna um objeto Categoria incluido</returns>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesDefaultResponseType]
     public async Task<ActionResult<CategoriaDTO>> Post(CategoriaDTO categoriaDto)
     {
         if (categoriaDto is null)
@@ -147,7 +154,9 @@ public class CategoriasController : ControllerBase
     }
 
     [HttpPut("{id:int}")]
-    [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesDefaultResponseType]
     public async Task<ActionResult<CategoriaDTO>> Put(int id, CategoriaDTO categoriaDto)
     {
         if (id != categoriaDto.CategoriaId)
@@ -168,6 +177,9 @@ public class CategoriasController : ControllerBase
 
     [HttpDelete("{id:int}")]
     [Authorize(Policy = "AdminOnly")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
     public async Task<ActionResult<CategoriaDTO>> Delete(int id)
     {
         var categoria = await _uof.CategoriaRepository.GetAsync(c => c.CategoriaId == id);
