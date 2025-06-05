@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "oxBnUkuxBL/O/P17ZBO+HJIEQfg9P47BPH8pBBU8KxLfLtt+dW3aHb8sj4lzHH0m6/+MsJHft4HZ6M8kE4cbxA==",
+  "dgSpecHash": "q1eD58+djnj+thm4iiWJeZwSzkbFGOrUj45PmkboAE3k7bQLyykkoUYD6j0+6IeUiQ81j06l5MBSaOBLiksdNw==",
   "success": true,
   "projectFilePath": "C:\\Users\\jonas.victor\\Documents\\Pojetos\\APICatalogo\\APICatalogo\\CleanArq\\Catalogo\\Catalogo.Application\\Catalogo.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\jonas.victor\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\jonas.victor\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
